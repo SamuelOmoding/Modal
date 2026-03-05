@@ -198,8 +198,8 @@ export default function Socials() {
         /* ── GRID ── */
         .socials-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2px;
+          grid-template-columns: repeat(8, 1fr);
+          gap: 4px;
         }
 
         /* ── CARD ── */
