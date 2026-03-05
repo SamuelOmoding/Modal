@@ -1,14 +1,29 @@
 // src/components/Navbar.jsx
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen]       = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   const links = ['About', 'Portfolio', 'Specialties', 'Socials', 'Contact']
+
+  // Solid background after scrolling down
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
 
   return (
     <>
       <style>{`
+        /* ── NAVBAR ── */
         .navbar {
           position: fixed;
           top: 0; left: 0; right: 0;
@@ -16,11 +31,22 @@ export default function Navbar() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 24px 60px;
-          background: linear-gradient(to bottom, rgba(10,8,5,0.97), transparent);
-          transition: padding 0.3s;
+          padding: 28px 60px;
+          transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
         }
 
+        .navbar.scrolled {
+          padding: 18px 60px;
+          background: rgba(10,8,5,0.95);
+          backdrop-filter: blur(12px);
+          border-bottom: 1px solid rgba(201,168,76,0.08);
+        }
+
+        .navbar:not(.scrolled) {
+          background: linear-gradient(to bottom, rgba(10,8,5,0.92), transparent);
+        }
+
+        /* ── LOGO ── */
         .nav-logo {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 22px;
@@ -28,12 +54,18 @@ export default function Navbar() {
           color: var(--gold);
           text-decoration: none;
           z-index: 110;
+          transition: opacity 0.3s;
         }
 
+        .nav-logo:hover { opacity: 0.75; }
+
+        /* ── DESKTOP LINKS ── */
         .nav-links {
           display: flex;
           gap: 44px;
           list-style: none;
+          margin: 0;
+          padding: 0;
         }
 
         .nav-links a {
@@ -43,13 +75,32 @@ export default function Navbar() {
           text-transform: uppercase;
           color: var(--cream);
           text-decoration: none;
-          opacity: 0.7;
+          opacity: 0.65;
           transition: opacity 0.3s, color 0.3s;
+          position: relative;
         }
 
-        .nav-links a:hover { opacity: 1; color: var(--gold); }
+        .nav-links a::after {
+          content: '';
+          position: absolute;
+          bottom: -4px; left: 0; right: 0;
+          height: 1px;
+          background: var(--gold);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s;
+        }
 
-        /* Hamburger */
+        .nav-links a:hover {
+          opacity: 1;
+          color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+          transform: scaleX(1);
+        }
+
+        /* ── HAMBURGER ── */
         .hamburger {
           display: none;
           flex-direction: column;
@@ -58,7 +109,7 @@ export default function Navbar() {
           z-index: 110;
           background: none;
           border: none;
-          padding: 4px;
+          padding: 6px;
         }
 
         .hamburger span {
@@ -66,70 +117,117 @@ export default function Navbar() {
           width: 24px;
           height: 1.5px;
           background: var(--gold);
-          transition: transform 0.3s, opacity 0.3s;
+          transition: transform 0.35s ease, opacity 0.35s ease;
           transform-origin: center;
         }
 
-        .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-        .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+        .hamburger.open span:nth-child(1) {
+          transform: translateY(6.5px) rotate(45deg);
+        }
+        .hamburger.open span:nth-child(2) {
+          opacity: 0;
+          transform: scaleX(0);
+        }
+        .hamburger.open span:nth-child(3) {
+          transform: translateY(-6.5px) rotate(-45deg);
+        }
 
-        /* Mobile menu drawer */
+        /* ── MOBILE DRAWER ── */
         .mobile-menu {
-          display: none;
           position: fixed;
           inset: 0;
-          background: rgba(10,8,5,0.98);
+          background: rgba(10,8,5,0.99);
           z-index: 105;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 40px;
+          gap: 36px;
+          display: none;
+          opacity: 0;
+          transition: opacity 0.3s;
         }
 
         .mobile-menu.open {
           display: flex;
+          opacity: 1;
         }
 
-        .mobile-menu a {
+        /* Mobile nav links */
+        .mobile-menu .mobile-nav-link {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 42px;
+          font-size: clamp(36px, 10vw, 52px);
           letter-spacing: 6px;
           color: var(--cream);
           text-decoration: none;
-          transition: color 0.3s;
+          transition: color 0.3s, letter-spacing 0.3s;
+          position: relative;
         }
 
-        .mobile-menu a:hover { color: var(--gold); }
+        .mobile-menu .mobile-nav-link::before {
+          content: attr(data-index);
+          position: absolute;
+          left: -32px;
+          font-size: 11px;
+          letter-spacing: 2px;
+          color: var(--gold);
+          opacity: 0.5;
+          top: 50%;
+          transform: translateY(-50%);
+          font-family: 'DM Sans', sans-serif;
+        }
 
+        .mobile-menu .mobile-nav-link:hover {
+          color: var(--gold);
+          letter-spacing: 8px;
+        }
+
+        /* Mobile contact strip */
         .mobile-menu-contact {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 8px;
-          margin-top: 20px;
-          padding-top: 32px;
-          border-top: 1px solid rgba(201,168,76,0.15);
+          gap: 10px;
+          padding: 28px 40px 0;
+          border-top: 1px solid rgba(201,168,76,0.12);
           width: 100%;
           text-align: center;
+          margin-top: 8px;
         }
 
         .mobile-menu-contact a {
           font-family: 'DM Sans', sans-serif;
-          font-size: 13px !important;
-          letter-spacing: 2px !important;
-          color: var(--gold) !important;
-          opacity: 0.7;
+          font-size: 12px;
+          letter-spacing: 2px;
+          color: var(--gold);
+          text-decoration: none;
+          opacity: 0.65;
+          transition: opacity 0.3s;
+        }
+
+        .mobile-menu-contact a:hover { opacity: 1; }
+
+        /* Mobile logo inside drawer */
+        .mobile-drawer-logo {
+          position: absolute;
+          top: 28px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 18px;
+          letter-spacing: 5px;
+          color: var(--gold);
+          opacity: 0.3;
         }
 
         @media (max-width: 768px) {
           .navbar { padding: 20px 24px; }
+          .navbar.scrolled { padding: 16px 24px; }
           .nav-links { display: none; }
           .hamburger { display: flex; }
         }
       `}</style>
 
-      <nav className="navbar">
+      <nav className={"navbar ${scrolled ? 'scrolled' : ''}"}>
         <a href="#" className="nav-logo">African_Couzin</a>
 
         {/* Desktop links */}
@@ -153,18 +251,22 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div className={`mobile-menu ${open ? 'open' : ''}`}>
-        {links.map(link => (
+        <span className="mobile-menu-logo">African_Couzin</span>
+
+        {links.map((link, i) => (
           <a
             key={link}
             href={`#${link.toLowerCase()}`}
+            className='Mobile-nav-link'
+            data-index={`0${i + 1}`}
             onClick={() => setOpen(false)}
             > 
             {link}
           </a>
         ))}
         <div className="mobile-menu-contact">
-          <a href="mailto:jumahsamuela@gmail.com" onClick={() => setOpen(false)}>
-            jumahsamuela@gmail.com
+          <a href="mailto:meshackomoding254@gmail.com" onClick={() => setOpen(false)}>
+           meshackomoding254@gmail.com
           </a>
           <a href="tel:+254729298595" onClick={() => setOpen(false)}>
             0729 298 595

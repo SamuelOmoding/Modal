@@ -1,17 +1,17 @@
 // src/components/Hero.jsx
-import { useEffect, useRef } from 'react'
-import photo9 from "../assets/photo-9.jpeg"
+import { useEffect, useRef } from "react";
+import photo9 from "../assets/photo-9.jpeg";
 
 export default function Hero() {
-  const hasAnimated = useRef(false)
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (hasAnimated.current) return
-    hasAnimated.current = true
-    document.querySelectorAll('.hero-reveal').forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), 300 + i * 200)
-    })
-  }, [])
+    if (hasAnimated.current) return;
+    hasAnimated.current = true;
+    document.querySelectorAll(".hero-reveal").forEach((el, i) => {
+      setTimeout(() => el.classList.add("visible"), 300 + i * 200);
+    });
+  }, []);
 
   return (
     <>
@@ -260,10 +260,8 @@ export default function Hero() {
       `}</style>
 
       <section className="hero-section">
-
         {/* ── LEFT — Text ── */}
         <div className="hero-left">
-
           <p className="hero-eyebrow hero-reveal">
             Nairobi, Kenya · Professional Model
           </p>
@@ -274,23 +272,26 @@ export default function Hero() {
           </h1>
 
           <p className="hero-tagline hero-reveal">
-            Versatility & Authenticity — where culture meets vision,
-            and every frame tells a story.
+            Versatility & Authenticity — where culture meets vision, and every
+            frame tells a story.
           </p>
 
           <div className="hero-divider hero-reveal" />
 
           <div className="hero-contact hero-reveal">
-            <a href="mailto:meshackomoding254@gmail.com"
-              style={{ color: 'var(--gold-light)' }}>
+            <a
+              href="mailto:meshackomoding254@gmail.com"
+              style={{ color: "var(--gold-light)" }}
+            >
               meshackomoding254@gmail.com
             </a>
-            <a href="tel:0729298595"
-              style={{ color: 'var(--cream)', opacity: 0.8 }}>
+            <a
+              href="tel:0729298595"
+              style={{ color: "var(--cream)", opacity: 0.8 }}
+            >
               0729 298 595
             </a>
           </div>
-
         </div>
 
         {/* ── RIGHT — Photo ── */}
@@ -308,11 +309,7 @@ export default function Hero() {
           <span className="scroll-text">Scroll</span>
           <div className="scroll-line" />
         </div>
-
       </section>
     </>
-  )
+  );
 }
-
-
-

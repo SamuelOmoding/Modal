@@ -1,17 +1,7 @@
 /* src/index.css */
+
 /* ── GOOGLE FONTS ── */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
-
-* Prevent horizontal overflow on ALL sections */
-section, footer, nav {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-/* Mobile base font scale */
-@media (max-width: 560px) {
-  html { font-size: 14px; }
-}
 
 /* ── CSS VARIABLES ── */
 :root {
@@ -20,7 +10,7 @@ section, footer, nav {
   --deep-black:  #0A0805;
   --warm-dark:   #140F08;
   --charcoal:    #1E1610;
-  --cream:       #F5EDD8;
+  --cream:       #f0eadc;
   --warm-white:  #FAF5EA;
   --terracotta:  #C4622D;
   --sienna:      #8B3A1A;
@@ -46,7 +36,17 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   display: block;
-  place-items: unset;
+}
+
+/* ── PREVENT HORIZONTAL OVERFLOW ── */
+section, footer, nav {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* ── MOBILE BASE FONT SCALE ── */
+@media (max-width: 560px) {
+  html { font-size: 14px; }
 }
 
 /* ── GLOBAL TYPOGRAPHY ── */
@@ -55,15 +55,13 @@ h1, h2, h3, h4 {
   font-weight: 400;
 }
 
+/* ── LINKS ── */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-a:hover {
-  color: inherit;
-}
-
+/* ── IMAGES ── */
 img {
   max-width: 100%;
   display: block;
@@ -82,23 +80,14 @@ button {
   transition: none;
 }
 
-button:hover {
-  border-color: transparent;
-}
-
 button:focus,
 button:focus-visible {
   outline: none;
 }
 
 /* ── SCROLLBAR ── */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--deep-black);
-}
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: var(--deep-black); }
 
 ::-webkit-scrollbar-thumb {
   background: var(--muted-gold);
@@ -114,8 +103,3 @@ button:focus-visible {
   background: var(--gold);
   color: var(--deep-black);
 }
-
-
-
-
-
