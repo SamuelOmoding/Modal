@@ -11,6 +11,7 @@ import photo7 from '../assets/photo-7.jpeg'
 import photo8 from '../assets/photo-8.jpeg'
 import photo9 from '../assets/photo-9.jpeg'
 import photo10 from '../assets/photo-4.jpeg'
+import photo11 from '../assets/photo-11.jpeg'
 
 //--marquee strip--
 import m1 from '../assets/m/m1.png'
@@ -37,7 +38,9 @@ import m21 from '../assets/m/m21.png'
 import m22 from '../assets/m/m22.png'
 import m23 from '../assets/m/m23.png'
 import m24 from '../assets/m/m24.png'
+import m25 from '../assets/photo-10.jpeg'
 import m26 from '../assets/m/m26.png'
+import { i } from 'framer-motion/client'
 
 const PHOTOS = [
   { id: 1,  src: photo1,  label: 'Featured',   category: 'Editorial',          featured: true  },
@@ -50,6 +53,7 @@ const PHOTOS = [
   { id: 8,  src: photo7,  label: 'Fitness',     category: 'Fitness',            featured: false },
   { id: 9,  src: photo9,  label: 'Portrait',    category: 'Portrait',           featured: false },
   { id: 10, src: photo10, label: 'Brand',       category: 'Brand',              featured: false },
+  { id: 11, src: photo11, label: 'Night Shot',      category: 'NS',             featured: false },
 ]
 
 //--Marquee photos--
@@ -78,7 +82,8 @@ const MARQUEE_ONLY = [
   { id: 32, src: m22, label: 'Macro Nature',        category: 'Nature'     },
   { id: 33, src: m23, label: 'Cultural Street Art', category: 'Street'    },
   { id: 34, src: m24, label: 'Misty Landscapes',   category: 'Landscape'  },
-  { id: 35, src: m26, label: 'Travel Adventures',    category: 'Street'     },
+  { id: 35, src: m25, label: 'Street Adventures',    category: 'Street'     },
+  { id: 36, src: m26, label: 'Urban Exploration',  category: 'Street'     },
 ]
 
 // Duplicate for seamless infinite loop
