@@ -5,7 +5,7 @@ import photo1 from '../assets/photo-1.jpeg'
 import photo2 from '../assets/photo-2.jpeg'
 import photo3 from '../assets/photo-3.jpeg'
 import photo4 from '../assets/photo-4.jpeg'
-import photo5 from '../assets/photo-5.jpeg'
+import photo5 from '../assets/photo-12.jpeg'
 import photo6 from '../assets/photo-6.jpeg'
 import photo7 from '../assets/photo-7.jpeg'
 import photo8 from '../assets/photo-8.jpeg'
@@ -40,6 +40,8 @@ import m23 from '../assets/m/m23.png'
 import m24 from '../assets/m/m24.png'
 import m25 from '../assets/photo-10.jpeg'
 import m26 from '../assets/m/m26.png'
+import m27 from '../assets/photo-13.jpeg'
+import m28 from '../assets/photo-14.jpeg'
 import { i } from 'framer-motion/client'
 
 const PHOTOS = [
@@ -54,6 +56,7 @@ const PHOTOS = [
   { id: 9,  src: photo9,  label: 'Portrait',    category: 'Portrait',           featured: false },
   { id: 10, src: photo10, label: 'Brand',       category: 'Brand',              featured: false },
   { id: 11, src: photo11, label: 'Night Shot',      category: 'NS',             featured: false },
+
 ]
 
 //--Marquee photos--
@@ -84,6 +87,8 @@ const MARQUEE_ONLY = [
   { id: 34, src: m24, label: 'Misty Landscapes',   category: 'Landscape'  },
   { id: 35, src: m25, label: 'Street Adventures',    category: 'Street'     },
   { id: 36, src: m26, label: 'Urban Exploration',  category: 'Street'     },
+  { id: 37, src: m27, label: 'Valentines Edition', category: 'Corporate'  },
+  { id: 38, src: m28, label: 'Perfect Shot',        category: 'Birds-Eye'     },
 ]
 
 // Duplicate for seamless infinite loop

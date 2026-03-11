@@ -7,6 +7,7 @@ import Specialties from './components/Specialties'
 import Socials from './components/Socials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Reviews from './components/Reviews'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <About />
       <Portfolio />
       <Specialties />
+      <Reviews />
       <Socials />
       <Contact />
       <Footer />

@@ -4,7 +4,7 @@ import { useState } from 'react'
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
-  const links = ['About', 'Portfolio', 'Specialties', 'Socials', 'Contact']
+  const links = ['About', 'Portfolio', 'Specialties', 'Reviews','Socials', 'Contact']
 
   return (
     <>
