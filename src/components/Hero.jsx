@@ -259,7 +259,7 @@ export default function Hero() {
 }
       `}</style>
 
-      <section className="hero-section">
+      <section id='home'className="hero-section">
 
         {/* ── LEFT — Text ── */}
         <div className="hero-left">
