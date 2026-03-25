@@ -4,7 +4,7 @@ import { supabase } from '../supabaseClient'
 
 const INITIAL_REVIEWS = [
   {
-    name: 'Samuel Jumah',
+    name: 'Sammie G',
     role: 'COO',
     company: 'Highmore Tours & Travel',
     project: 'Advertising Campaign',
